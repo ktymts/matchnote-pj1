@@ -1,0 +1,32 @@
+# wrangler.toml
+name = "matchnote"
+compatibility_date = "2026-05-22"
+pages_build_output_dir = "./public"
+
+# ==================================================
+# D1 データベースバインディング
+# ==================================================
+[[d1_databases]]
+binding = "DB"
+database_name = "matchnote-db"
+database_id = "1c417547-b24a-4541-af46-d8f426764086"
+
+# ==================================================
+# Workers KV バインディング
+# ==================================================
+[[kv_namespaces]]
+binding = "SESSIONS"
+id = "64c1b053157e4ad69eec3f48d75dd0a3"
+preview_id = "b7ea82c9a6a34035bce3b2c0eb230747"
+
+[[kv_namespaces]]
+binding = "SHARE"
+id = "075521b332134626b824e5538be6971b"
+preview_id = "694c213edde5496ba56d16f10a17acdd"
+
+# ==================================================
+# 環境変数 (秘密情報は Secrets として別途設定)
+# ==================================================
+[vars]
+ENVIRONMENT = "production"
+APP_NAME = "MatchNote"
