@@ -25,7 +25,16 @@ export async function onRequest({ request, env, next }) {
   const token = request.headers.get('X-Session-Token');
   if (!token) return unauth('Unauthorized');
 
-  const teamId = await env.SESSIONS.get(`session:${token}`);
+  // const teamId = await env.SESSIONS.get(`session:${token}`);
+  // ★ 修正: KV アクセスエラーをハンドリング
+  let teamId;
+  try {
+    teamId = await env.SESSIONS.get(`session:${token}`);
+  } catch (e) {
+    console.error('KV access error:', e);
+    return unauth('Session store unavailable');
+  }
+  //
   if (!teamId) return unauth('Session expired or invalid');
 
   return next();

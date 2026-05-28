@@ -35,11 +35,23 @@ const api = {
       headers,
       body: body ? JSON.stringify(body) : undefined,
     });
+
     if (res.status === 401) {
       clearSession();
       throw new Error('UNAUTHORIZED');
     }
     if (res.status === 204) return null;
+
+    // ★ 追加: JSON 以外（HTML等）が返ってきた場合の検知
+    const contentType = res.headers.get('Content-Type') || '';
+    if (!contentType.includes('application/json')) {
+      console.error(`[API ERROR] Non-JSON response: ${res.status} ${res.url}`);
+      throw new Error(
+        `APIルートが見つかりません (${res.status})。` +
+        `functions/ ディレクトリの配置を確認してください。`
+      );
+    }
+
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
     return data;
