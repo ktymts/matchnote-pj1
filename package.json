@@ -1,0 +1,15 @@
+{
+  "name": "matchnote",
+  "version": "1.0.0",
+  "description": "少年サッカー8人制 試合記録・共有アプリ",
+  "scripts": {
+    "dev": "wrangler pages dev ./public",
+    "deploy": "wrangler pages deploy ./public",
+    "db:migrate:local": "wrangler d1 execute matchnote-db --local --file migrations/0001_init.sql",
+    "db:migrate:remote": "wrangler d1 execute matchnote-db --file migrations/0001_init.sql",
+    "db:export": "wrangler d1 export matchnote-db --output backup-$(date +%Y%m%d).sql"
+  },
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}

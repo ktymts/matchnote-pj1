@@ -1,0 +1,265 @@
+/* MatchNote — Mobile-first Design */
+
+:root {
+  --primary:   #1a56db;
+  --primary-d: #1340a8;
+  --success:   #0e9f6e;
+  --danger:    #e02424;
+  --warning:   #d97706;
+  --line:      #06c755;
+  --bg:        #f3f4f6;
+  --surface:   #ffffff;
+  --border:    #e5e7eb;
+  --text:      #111827;
+  --muted:     #6b7280;
+  --radius:    12px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ── Header ── */
+.app-header {
+  background: var(--primary);
+  color: #fff;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: sticky; top: 0; z-index: 20;
+  box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+.header-content { flex: 1; }
+.app-title    { font-size: 1.1rem; font-weight: 700; line-height: 1.2; }
+.app-subtitle { font-size: .75rem; opacity: .8; }
+.btn-back, .btn-icon {
+  background: none; border: none; color: #fff;
+  font-size: 1.4rem; cursor: pointer; padding: 4px 6px;
+  border-radius: 6px; line-height: 1;
+}
+.btn-back:active, .btn-icon:active { background: rgba(255,255,255,.2); }
+
+/* ── Tab Nav ── */
+.tab-nav { display: flex; background: var(--surface); border-bottom: 1px solid var(--border); }
+.tab {
+  flex: 1; padding: 11px; background: none; border: none;
+  cursor: pointer; font-size: .95rem; color: var(--muted);
+  border-bottom: 2px solid transparent; transition: all .2s;
+}
+.tab.active { color: var(--primary); border-bottom-color: var(--primary); font-weight: 600; }
+
+/* ── Container ── */
+.container { max-width: 640px; margin: 0 auto; padding: 16px; }
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 4px;
+  padding: 11px 20px; border-radius: 10px; border: none;
+  font-size: .95rem; font-weight: 600; cursor: pointer;
+  transition: filter .15s; text-decoration: none;
+}
+.btn:active { filter: brightness(.9); }
+.btn-primary   { background: var(--primary); color: #fff; }
+.btn-secondary { background: var(--border);  color: var(--text); }
+.btn-success   { background: var(--success); color: #fff; }
+.btn-danger    { background: var(--danger);  color: #fff; }
+.btn-warning   { background: var(--warning); color: #fff; }
+.btn-outline   { background: transparent; border: 2px solid var(--primary); color: var(--primary); }
+.btn-line      { background: var(--line); color: #fff; }
+.btn-block     { display: flex; width: 100%; }
+.btn-sm        { padding: 5px 10px; font-size: .8rem; border-radius: 6px; border: none; cursor: pointer; font-weight: 600; }
+.btn-sm.btn-danger  { background: var(--danger); color: #fff; }
+.btn-sm.btn-success { background: var(--success); color: #fff; }
+
+.mt-2 { margin-top: 8px; }
+.mt-3 { margin-top: 12px; }
+.mt-4 { margin-top: 16px; }
+.mb-3 { margin-bottom: 12px; }
+
+/* ── Card List ── */
+.card-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+
+/* Team Card */
+.team-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 16px;
+  display: flex; align-items: center; cursor: pointer;
+  transition: box-shadow .15s;
+}
+.team-card:active { box-shadow: 0 2px 8px rgba(0,0,0,.12); }
+.team-card-info  { flex: 1; }
+.team-name  { display: block; font-weight: 700; font-size: 1rem; }
+.team-meta  { display: block; font-size: .8rem; color: var(--muted); margin-top: 3px; }
+.chevron    { color: var(--muted); font-size: 1.5rem; line-height: 1; }
+
+/* Match Card */
+.match-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 12px 16px;
+  display: flex; align-items: center; cursor: pointer;
+  transition: box-shadow .15s;
+}
+.match-card:active { box-shadow: 0 2px 8px rgba(0,0,0,.12); }
+.match-card.live { border-left: 4px solid var(--success); }
+.match-card.done { opacity: .75; }
+.match-left  { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+.match-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.match-date  { font-size: .75rem; color: var(--muted); }
+.match-vs    { font-weight: 700; font-size: .95rem; }
+.match-comp  { font-size: .75rem; color: var(--muted); }
+.match-score { font-size: 1.3rem; font-weight: 900; color: var(--primary); }
+.status-badge {
+  font-size: .7rem; padding: 2px 8px; border-radius: 10px;
+  background: var(--bg); color: var(--muted);
+}
+
+/* Player Card */
+.player-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 10px 14px;
+  display: flex; align-items: center; gap: 12px;
+}
+.player-card.inactive { opacity: .5; }
+.jersey {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: var(--primary); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: .9rem; flex-shrink: 0;
+}
+.player-info { flex: 1; }
+.player-name { display: block; font-weight: 600; }
+.player-pos  { font-size: .78rem; color: var(--muted); }
+.player-actions { display: flex; gap: 4px; }
+
+/* ── Scoreboard ── */
+.scoreboard {
+  background: linear-gradient(135deg, var(--primary), var(--primary-d));
+  color: #fff; border-radius: 16px; padding: 20px;
+  text-align: center; margin-bottom: 16px;
+  box-shadow: 0 4px 16px rgba(26,86,219,.3);
+}
+.sb-teams   { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 6px; }
+.sb-team    { font-size: .85rem; opacity: .9; flex: 1; }
+.sb-team:last-child { text-align: right; }
+.sb-score   { font-size: 2.8rem; font-weight: 900; min-width: 110px; }
+.sb-halves  { font-size: .8rem; opacity: .8; margin-bottom: 4px; }
+.sb-meta    { font-size: .8rem; opacity: .85; }
+.sb-status  {
+  display: inline-block; margin-top: 10px;
+  padding: 3px 14px; border-radius: 20px;
+  background: rgba(255,255,255,.2); font-size: .8rem; font-weight: 600;
+}
+.sb-result { margin-top: 6px; font-size: 1.1rem; font-weight: 700; }
+.result-win  { color: #fbbf24; }
+.result-lose { opacity: .7; }
+.result-draw { opacity: .85; }
+
+/* ── Controls & Events ── */
+.ctrl-area   { margin-bottom: 12px; }
+.event-btns  { display: flex; gap: 8px; margin-bottom: 16px; }
+.event-btns .btn { flex: 1; font-size: .85rem; padding: 10px 6px; }
+
+.event-log   { }
+.section-title { font-size: .95rem; font-weight: 700; margin-bottom: 10px; }
+.event-list  { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.event-item  {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; padding: 9px 12px;
+  display: flex; align-items: flex-start; gap: 10px;
+}
+.ev-goal    { border-left: 4px solid var(--success); }
+.ev-concede { border-left: 4px solid var(--danger);  }
+.ev-sub     { border-left: 4px solid var(--warning); }
+.ev-icon    { font-size: 1.2rem; flex-shrink: 0; }
+.ev-body    { flex: 1; }
+.ev-label   { display: block; font-weight: 600; font-size: .9rem; }
+.ev-time    { font-size: .78rem; color: var(--muted); }
+.ev-detail  { display: block; font-size: .85rem; margin-top: 2px; }
+.assist     { color: var(--muted); font-size: .8rem; }
+
+/* ── Forms ── */
+.form-group { margin-bottom: 14px; }
+.form-group label { display: block; font-size: .88rem; font-weight: 500; margin-bottom: 4px; }
+.input {
+  width: 100%; padding: 10px 12px;
+  border: 1px solid var(--border); border-radius: 8px;
+  font-size: 1rem; color: var(--text); background: var(--surface);
+  outline: none; appearance: none;
+}
+.input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(26,86,219,.15); }
+.required { color: var(--danger); }
+
+/* ── Modal ── */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,.5);
+  display: flex; align-items: flex-end; z-index: 100;
+}
+.modal-overlay.hidden { display: none; }
+.modal-content {
+  background: var(--surface); border-radius: 20px 20px 0 0;
+  padding: 20px 20px 32px; width: 100%; max-height: 92vh; overflow-y: auto;
+}
+.form-modal h3 { font-size: 1.1rem; margin-bottom: 16px; }
+.modal-actions { display: flex; gap: 8px; margin-top: 16px; }
+.modal-actions .btn { flex: 1; }
+
+/* PIN Modal */
+.pin-modal { text-align: center; padding: 8px 0; }
+.pin-icon  { font-size: 2.5rem; margin-bottom: 8px; }
+.pin-modal h3 { font-size: 1.15rem; margin-bottom: 6px; }
+.pin-input {
+  width: 100%; padding: 14px; text-align: center;
+  font-size: 2rem; letter-spacing: .5em;
+  border: 2px solid var(--border); border-radius: 10px; outline: none; margin: 12px 0;
+}
+.pin-input:focus { border-color: var(--primary); }
+
+/* Share */
+.share-preview {
+  background: var(--bg); border-radius: 10px; padding: 14px;
+  font-size: .85rem; white-space: pre-wrap; word-break: break-word;
+  color: var(--text); font-family: inherit; border: 1px solid var(--border);
+}
+
+/* ── Toast ── */
+.toast {
+  position: fixed; bottom: 28px; left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 22px; border-radius: 24px;
+  font-size: .9rem; color: #fff; z-index: 200;
+  animation: fadeUp .25s ease;
+  box-shadow: 0 4px 16px rgba(0,0,0,.2);
+  white-space: nowrap;
+}
+.toast.hidden { display: none; }
+.toast-success { background: var(--success); }
+.toast-error   { background: var(--danger);  }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateX(-50%) translateY(12px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* ── Spinner ── */
+.spinner {
+  width: 36px; height: 36px; margin: 48px auto;
+  border: 3px solid var(--border); border-top-color: var(--primary);
+  border-radius: 50%; animation: spin .7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Empty State ── */
+.empty-state { text-align: center; padding: 48px 20px; color: var(--muted); }
+.empty-icon  { font-size: 2.5rem; margin-bottom: 10px; }
+
+/* ── Utilities ── */
+.text-muted { color: var(--muted); }
+.hidden     { display: none !important; }
+.error-msg  { color: var(--danger); font-size: .83rem; margin-top: 6px; }
+.loading-screen { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
